@@ -17,3 +17,14 @@ Sonnet 5.5. The change is small and follows an existing pattern, so a fast, capa
 - Validation runs before the existence check, so bad input on a missing id returns 400, not 404.
 - Name and email are trimmed before saving, and email must look like `x@y.z`.
 - `POST /users` still uses the looser `!name || !email` check, so the two endpoints validate differently. Left as is to keep this change scoped.
+
+## Test results
+`npm test` on 2026-11-11: 9 tests, 9 passed, 0 failed.
+
+- PUT /users/:id updates an existing user: pass
+- PUT /users/:id returns 404 for a user that does not exist: pass
+- PUT /users/:id with a missing field returns 400: pass
+- GET /health returns ok: pass
+- GET /users returns a list of users: pass
+- GET /users/:id returns 404 for a user that does not exist: pass
+- POST /users with no body returns 400: pass
